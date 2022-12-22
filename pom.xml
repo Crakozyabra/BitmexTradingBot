@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.example</groupId>
+  <artifactId>project-servlet-bitmex</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>project-servlet-bitmex Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.json/json -->
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20210307</version>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-api -->
+     <!-- <dependency>
+          <groupId>jakarta.websocket</groupId>
+          <artifactId>jakarta.websocket-api</artifactId>
+          <version>2.1.0</version>
+          <scope>provided</scope>
+      </dependency>-->
+
+      <!-- https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-client-api -->
+     <!-- <dependency>
+          <groupId>jakarta.websocket</groupId>
+          <artifactId>jakarta.websocket-client-api</artifactId>
+          <version>2.1.0</version>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>javax.enterprise</groupId>
+          <artifactId>cdi-api</artifactId>
+          <version>1.2</version>
+      </dependency>-->
+
+      <dependency>
+          <groupId>jakarta.platform</groupId>
+          <artifactId>jakarta.jakartaee-api</artifactId>
+          <version>8.0.0</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
+     <!-- <dependency>
+          <groupId>javax.websocket</groupId>
+          <artifactId>javax.websocket-api</artifactId>
+          <version>1.1</version>
+          <scope>provided</scope>
+      </dependency>-->
+
+      <dependency>
+          <groupId>org.glassfish.tyrus.bundles</groupId>
+          <artifactId>tyrus-standalone-client</artifactId>
+          <version>2.0.0-M3</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
+      <dependency>
+          <groupId>javax.json</groupId>
+          <artifactId>javax.json-api</artifactId>
+          <version>1.1.4</version>
+      </dependency>
+
+
+  </dependencies>
+  <build>
+    <finalName>project-servlet-bitmex</finalName>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>19</source>
+                  <target>19</target>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
+</project>

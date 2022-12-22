@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="project-servlet-bitmex:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3526ccfc-85ce-4988-a492-e4f018cebcd6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/BitmexTradingBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/TradingBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/BitmexTradingAlgoritmDownSellUpBuy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/HMAC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/TradingAlgoritm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/BitmexOrderMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/OrderMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/URL/URL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/URL/URLBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/URL/urlconstants/ResourceURL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/URL/urlconstants/UtilURL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/URL/urlconstants/Verb.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/jsondataparsers/BitmexJsonDataParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/jsondataparsers/JsonDataParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/orders/LimitOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/orders/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/orders/orderconstants/OrderSide.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/orders/orderconstants/OrderType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/orders/orderconstants/Symbol.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/exceptions/InvalidApiKeyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/exceptions/InvalidSecretKeyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/exceptions/NoSuchBuySideOrderIdException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/exceptions/NoSuchOrderIdException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/exceptions/NoSuchSellSideOrderIdIdException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/exceptions/ParseLimitOrderExceprion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listeners/SimpleServletContextListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/MainServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/RemoveBotServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/websocketclient/Signature.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/websocketclient/TestApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/websocketclient/WebsocketClientEndpoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/scripts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/post_data.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Jsp File" />
+        <option value="JavaScript File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2IctGfDutYQznD6sIz1HefE71xq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ivan/IdeaProjects/project-servlet-bitmex/src/main/java&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.BitmexOrderMaker">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bitmexframework.App" />
+      <module name="project-servlet-bitmex" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BitmexJsonDataParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bots.algoritms.ordermakers.jsondataparsers.BitmexJsonDataParser" />
+      <module name="project-servlet-bitmex" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bots.algoritms.ordermakers.jsondataparsers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BitmexOrderMaker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bots.algoritms.ordermakers.BitmexOrderMaker" />
+      <module name="project-servlet-bitmex" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bots.algoritms.ordermakers.orders.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DayOfWeek" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bitmexframework.order.DayOfWeek" />
+      <module name="project-servlet-bitmex" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bots.algoritms.ordermakers.orders.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="websocketclient.TestApp" />
+      <module name="project-servlet-bitmex" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="websocketclient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.69" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.69" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="project-servlet-bitmex:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="d4689329-3083-43a8-8dbc-46959989393e" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="46433" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="project-servlet-bitmex:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.DayOfWeek" />
+      <item itemvalue="Application.BitmexJsonDataParser" />
+      <item itemvalue="Application.BitmexOrderMaker" />
+      <item itemvalue="Application.TestApp" />
+      <item itemvalue="Application.App" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BitmexOrderMaker" />
+        <item itemvalue="Application.TestApp" />
+        <item itemvalue="Application.DayOfWeek" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.BitmexJsonDataParser" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3526ccfc-85ce-4988-a492-e4f018cebcd6" name="Changes" comment="" />
+      <created>1670492604996</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670492604996</updated>
+      <workItem from="1670492606051" duration="79000" />
+      <workItem from="1670492728581" duration="22000" />
+      <workItem from="1670492850447" duration="1933000" />
+      <workItem from="1670498257320" duration="325000" />
+      <workItem from="1670498668895" duration="693000" />
+      <workItem from="1670499466619" duration="240000" />
+      <workItem from="1670499802858" duration="333000" />
+      <workItem from="1670500213421" duration="54000" />
+      <workItem from="1670500283997" duration="63000" />
+      <workItem from="1670500368548" duration="1007000" />
+      <workItem from="1670501407936" duration="7928000" />
+      <workItem from="1670521168682" duration="599000" />
+      <workItem from="1670584667654" duration="18044000" />
+      <workItem from="1670675602676" duration="9388000" />
+      <workItem from="1670701336178" duration="2041000" />
+      <workItem from="1670752369953" duration="26610000" />
+      <workItem from="1670844405308" duration="617000" />
+      <workItem from="1670851213184" duration="9759000" />
+      <workItem from="1670926354636" duration="10376000" />
+      <workItem from="1670944331396" duration="4433000" />
+      <workItem from="1671016095064" duration="20217000" />
+      <workItem from="1671096428882" duration="23361000" />
+      <workItem from="1671136878699" duration="49000" />
+      <workItem from="1671198879533" duration="2124000" />
+      <workItem from="1671218013278" duration="3253000" />
+      <workItem from="1671222219525" duration="5887000" />
+      <workItem from="1671303951092" duration="26000" />
+      <workItem from="1671305790513" duration="3954000" />
+      <workItem from="1671355895200" duration="16784000" />
+      <workItem from="1671383417854" duration="6764000" />
+      <workItem from="1671442445295" duration="8583000" />
+      <workItem from="1671458376041" duration="9709000" />
+      <workItem from="1671619375999" duration="5373000" />
+      <workItem from="1671649390025" duration="3803000" />
+      <workItem from="1671699777964" duration="7906000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
