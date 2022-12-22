@@ -12,7 +12,6 @@ import bots.algoritms.ordermakers.orders.orderconstants.OrderSide;
 import bots.algoritms.ordermakers.orders.orderconstants.Symbol;
 import org.json.JSONException;
 import org.json.JSONObject;
-import websocketclient.Signature;
 
 import java.io.IOException;
 import java.net.URI;

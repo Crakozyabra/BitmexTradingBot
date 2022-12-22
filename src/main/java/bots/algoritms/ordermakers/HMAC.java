@@ -1,4 +1,4 @@
-package bots.algoritms;
+package bots.algoritms.ordermakers;
 
 import java.math.BigInteger;
 import java.security.InvalidKeyException;
