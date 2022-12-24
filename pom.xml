@@ -28,47 +28,43 @@
         <version>20210307</version>
       </dependency>
 
+      <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
       <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>3.8.1</version>
-        <scope>test</scope>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-api</artifactId>
+          <version>5.8.2</version>
+          <scope>test</scope>
       </dependency>
 
-      <!-- https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-api -->
-     <!-- <dependency>
-          <groupId>jakarta.websocket</groupId>
-          <artifactId>jakarta.websocket-api</artifactId>
-          <version>2.1.0</version>
-          <scope>provided</scope>
-      </dependency>-->
-
-      <!-- https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-client-api -->
-     <!-- <dependency>
-          <groupId>jakarta.websocket</groupId>
-          <artifactId>jakarta.websocket-client-api</artifactId>
-          <version>2.1.0</version>
-          <scope>provided</scope>
-      </dependency>
       <dependency>
-          <groupId>javax.enterprise</groupId>
-          <artifactId>cdi-api</artifactId>
-          <version>1.2</version>
-      </dependency>-->
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-params</artifactId>
+          <version>5.8.2</version>
+          <scope>test</scope>
+      </dependency>
+
+
+      <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-junit-jupiter</artifactId>
+          <version>4.6.1</version>
+          <scope>test</scope>
+      </dependency>
+
+
+      <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+      <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-core</artifactId>
+          <version>4.6.1</version>
+          <scope>test</scope>
+      </dependency>
 
       <dependency>
           <groupId>jakarta.platform</groupId>
           <artifactId>jakarta.jakartaee-api</artifactId>
           <version>8.0.0</version>
       </dependency>
-
-      <!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
-     <!-- <dependency>
-          <groupId>javax.websocket</groupId>
-          <artifactId>javax.websocket-api</artifactId>
-          <version>1.1</version>
-          <scope>provided</scope>
-      </dependency>-->
 
       <dependency>
           <groupId>org.glassfish.tyrus.bundles</groupId>
@@ -82,6 +78,14 @@
           <artifactId>javax.json-api</artifactId>
           <version>1.1.4</version>
       </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+      <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-core</artifactId>
+          <version>2.19.0</version>
+      </dependency>
+
 
 
   </dependencies>

@@ -16,6 +16,7 @@ div.padding-inside > div {
 
 .form-position > input {
     margin-top: 5px;
+    width: 170px;
 }
 
 .form-position {
@@ -32,6 +33,6 @@ div.padding-inside > div {
     padding: 7px;
     border: 1px dotted;
     margin: 7px;
-    width: min-content;
+    width: 300px;
     background-color: lightgreen;
 }

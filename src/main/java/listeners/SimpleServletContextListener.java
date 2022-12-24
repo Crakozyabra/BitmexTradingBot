@@ -1,6 +1,8 @@
 package listeners;
 
 import bots.BitmexTradingBot;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebListener;
@@ -15,15 +17,16 @@ public class SimpleServletContextListener implements ServletContextAttributeList
 
    private ExecutorService executorService = Executors.newCachedThreadPool();
    private Map<String, Future<?>> botIdFutureMap = new HashMap<>();
+   private final Logger logger = LogManager.getLogger();
 
     @Override
     public void attributeAdded(ServletContextAttributeEvent event) {
         ServletContextAttributeListener.super.attributeAdded(event);
-        System.out.println("SimpleServletContextListener. attributeAdded. Bot id has been added to servlet context: " + event.getName());
+        logger.trace("start");
         if (event.getValue() instanceof BitmexTradingBot bitmexTradingBot) {
-            System.out.println("SimpleServletContextListener. attributeAdded. ");
             Future<?> futureForBotStop = executorService.submit(bitmexTradingBot);
             botIdFutureMap.put(event.getName(), futureForBotStop);
+            logger.debug("Start thread with bot with id: " + event.getName());
         }
     }
 
@@ -31,14 +34,13 @@ public class SimpleServletContextListener implements ServletContextAttributeList
     public void attributeRemoved(ServletContextAttributeEvent event) {
         ServletContextAttributeListener.super.attributeRemoved(event);
         String botIdForRemove = event.getName();
-        System.out.println("SimpleServletContextListener. attributeRemoved. Bot id has been removed from servlet context: " + botIdForRemove);
         boolean botWasStop = botIdFutureMap.get(botIdForRemove).cancel(true);
-        System.out.println("Bot with id=" + botIdForRemove + " was stop: " + botWasStop);
+        logger.debug("Bot with id=" + botIdForRemove + " was stop: " + botWasStop);
     }
 
     @Override
     public void attributeReplaced(ServletContextAttributeEvent event) {
         ServletContextAttributeListener.super.attributeReplaced(event);
-        System.out.println("SimpleServletContextListener. attributeReplaced. Event name: " + event.getName());
+        logger.trace("start");
     }
 }

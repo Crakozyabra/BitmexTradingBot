@@ -5,8 +5,8 @@ $(function() {
         botInputDataJsonObj["apiKey"] = $("#api-key").val();
         botInputDataJsonObj["apiSecret"] = $("#api-secret").val();
         botInputDataJsonObj["orderPrice"] = $("#order-price").val();
-        botInputDataJsonObj["stepBetweenOrders"] = $("#step-between-bots.algoritms.ordermakers.orders").val();
-        botInputDataJsonObj["ordersQuanity"] = $("#bots.algoritms.ordermakers.orders-quanity").val();
+        botInputDataJsonObj["stepBetweenOrders"] = $("#step-between-orders").val();
+        botInputDataJsonObj["ordersQuanity"] = $("#orders-quanity").val();
         console.log(botInputDataJsonObj);
         $.ajax({
             url: "http://localhost:8080/",
@@ -14,13 +14,18 @@ $(function() {
             dataType: "json",
             data: JSON.stringify(botInputDataJsonObj),
             success: function(result){
-                $( "body" ).append( $(
-                    "<div class='bot-container' id='bot-container"+ result["botId"] +"' >" +
-                        "<div><b>Api key:</b>" + botInputDataJsonObj["apiKey"] +"</div>" +
-                        "<div><b>Bot id:</b>" + result["botId"]  +"</div>" +
-                        "<button class='stop-bot' id='"+ result["botId"] +"' >Stop bot</button>" +
-                    "</div>"
-                ));
+                console.log(result);
+                if (result["botId"] > 0) {
+                    $("body").append($(
+                        "<div class='bot-container' id='bot-container" + result["botId"] + "' >" +
+                        "<div><b>Api key:</b>" + botInputDataJsonObj["apiKey"] + "</div>" +
+                        "<div><b>Bot id:</b>" + result["botId"] + "</div>" +
+                        "<button class='stop-bot' id='" + result["botId"] + "' >Stop bot</button>" +
+                        "</div>"
+                    ));
+                } else {
+                    alert("Keys in the first and second bitmex bot data fields are not valid! Bot was not started.")
+                }
             }
         });
     });

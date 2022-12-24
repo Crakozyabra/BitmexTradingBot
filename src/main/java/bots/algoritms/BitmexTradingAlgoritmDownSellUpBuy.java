@@ -1,11 +1,13 @@
 package bots.algoritms;
 
+import bots.algoritms.ordermakers.OrderMaker;
+import bots.algoritms.ordermakers.orders.LimitOrder;
 import bots.algoritms.ordermakers.orders.orderconstants.OrderSide;
 import bots.algoritms.ordermakers.orders.orderconstants.Symbol;
-import bots.algoritms.ordermakers.orders.LimitOrder;
-import bots.algoritms.ordermakers.OrderMaker;
 import bots.exceptions.NoSuchBuySideOrderIdException;
 import bots.exceptions.NoSuchSellSideOrderIdIdException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +26,8 @@ public class BitmexTradingAlgoritmDownSellUpBuy implements TradingAlgoritm{
     private Set<String> filledOrderIdSet; // filled order set
     private OrderMaker orderMaker;
 
+    private static Logger logger = LogManager.getLogger();
+
     public BitmexTradingAlgoritmDownSellUpBuy(int ordersQuanity, double moneyQuanityInOrder, double stepMoneyBetweenOrders, OrderMaker orderMaker) {
         this.stepMoneyBetweenOrders = stepMoneyBetweenOrders;
         this.ordersQuanity = ordersQuanity;
@@ -31,25 +35,26 @@ public class BitmexTradingAlgoritmDownSellUpBuy implements TradingAlgoritm{
         this.orderMaker = orderMaker;
     }
     public void makeStartOrders (){
+        logger.trace("start");
         double bitcoinInitialPrice = orderMaker.getCurrentBitcoinPrice();
+        cursorBitcoinPrice = bitcoinInitialPrice;
         while (allOrdersQuanity() < ordersQuanity && buyOrderIdPriceMap.size() < ordersQuanity) {
+            logger.debug("buyOrderIdPriceMap size="+buyOrderIdPriceMap.size()+"; sellOrderIdPriceMap size="+sellOrderIdPriceMap);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("BitmexTradingAlgoritmDownSellUpBuy. makeStartOrders. BincoinInitialPrice=" + bitcoinInitialPrice);
-            cursorBitcoinPrice = bitcoinInitialPrice - stepMoneyBetweenOrders;
-            System.out.println("cursorBitcoinPrice: " + cursorBitcoinPrice);
+            logger.debug("bitcoinInitialPrice=" + bitcoinInitialPrice);
+            cursorBitcoinPrice = cursorBitcoinPrice -stepMoneyBetweenOrders;
             LimitOrder planningLimitOrder = new LimitOrder(Symbol.XBTUSD, OrderSide.BUY, cursorBitcoinPrice, moneyQuanityInOrder);
-            System.out.println("planningLimitOrder: " + planningLimitOrder);
             LimitOrder makingLimitOrder = orderMaker.makeOrder(planningLimitOrder);
-            System.out.println("makingLimitOrder: " + makingLimitOrder);
             buyOrderIdPriceMap.put(makingLimitOrder.getId(), cursorBitcoinPrice);
-            buyOrderIdPriceMap.forEach((key, value) -> System.out.println(key + ": "+ value));
+            buyOrderIdPriceMap.forEach((key, value) -> logger.info("Limit order created: id="+ key + "; bitcoin price="+ value));
         }
     }
     private void makeCounterOrder(String oldOrderId, OrderSide orderSide) {
+        logger.trace("start");
         String newOrderId = "";
         if (orderSide == OrderSide.BUY) {
             if (!buyOrderIdPriceMap.containsKey(oldOrderId)) {
@@ -81,6 +86,7 @@ public class BitmexTradingAlgoritmDownSellUpBuy implements TradingAlgoritm{
 
     @Override
     public void makeCounterOrderIfFilledOrderAviable() {
+        logger.trace("start");
         filledOrderIdSet.forEach(filledOrderId -> {
             if(buyOrderIdPriceMap.containsKey(filledOrderId)) {
                 makeCounterOrder(filledOrderId, OrderSide.SELL);
@@ -95,16 +101,14 @@ public class BitmexTradingAlgoritmDownSellUpBuy implements TradingAlgoritm{
 
     @Override
     public void updateFilledOrderIdsSet() {
+        logger.trace("start");
         filledOrderIdSet = orderMaker.getAllOrders().stream().
                 filter(limitOrder -> limitOrder.getStatus().contains("filled")).
                 map(LimitOrder::getId).
                 collect(Collectors.toSet());
+        logger.debug("filledOrderIdSet: " + String.join(",", filledOrderIdSet));
     }
 
-    @Override
-    public boolean accountKeysIsValid() {
-        return orderMaker.accountKeysIsValid();
-    }
 
     public double getStepMoneyBetweenOrders() {
         return stepMoneyBetweenOrders;

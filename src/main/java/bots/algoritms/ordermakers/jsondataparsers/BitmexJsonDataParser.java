@@ -1,8 +1,8 @@
 package bots.algoritms.ordermakers.jsondataparsers;
 
+import bots.algoritms.ordermakers.orders.LimitOrder;
 import bots.algoritms.ordermakers.orders.orderconstants.OrderSide;
 import bots.algoritms.ordermakers.orders.orderconstants.Symbol;
-import bots.algoritms.ordermakers.orders.LimitOrder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -14,8 +14,9 @@ public class BitmexJsonDataParser implements JsonDataParser {
        JSONArray jsonArray = new JSONArray(message);
        JSONObject lastBitcoinPriceTimestampObject = jsonArray.getJSONObject(0);
        double bidPrice = Double.parseDouble(lastBitcoinPriceTimestampObject.get("bidPrice").toString());
-       double askPrice = Double.parseDouble(lastBitcoinPriceTimestampObject.get("askPrice").toString());
-       return (bidPrice + askPrice) / 2;
+       // double askPrice = Double.parseDouble(lastBitcoinPriceTimestampObject.get("askPrice").toString());
+       // return (bidPrice + askPrice) / 2;
+       return bidPrice;
    }
 
    public Set<LimitOrder> parseAllLimitOrders(String message) { // current existing bots.algoritms.ordermakers.orders on bitmex for concrete apiKey and apiSecret

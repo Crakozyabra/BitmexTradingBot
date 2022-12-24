@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Title</title>
@@ -16,9 +17,9 @@
             </div>
             <input type="text" id="api-key" placeholder="Api key" />
             <input type="text" id="api-secret" placeholder="Api secret" />
-            <input type="text" id="order-price" placeholder="Order price in USD" />
-            <input type="text" id="step-between-orders" placeholder="Step between bots.algoritms.ordermakers.orders" />
-            <input type="number" id="orders-quanity" placeholder="Orders quanity" />
+            <input type="number" id="order-price" placeholder="Order price in USD" min="100" max="300" maxlength="6"/>
+            <input type="number" id="step-between-orders" placeholder="Step between bots" min="100" max="300" maxlength="3"/>
+            <input type="number" id="orders-quanity" placeholder="Orders quanity" min="1" max="3" maxlength="3"/>
             <br>
             <input type="button" id="add-bot-id" value="Confirm"/>
         </div>

@@ -1,8 +1,9 @@
 package bots;
 
 import bots.algoritms.TradingAlgoritm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.time.LocalTime;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BitmexTradingBot implements TradingBot, Runnable{
@@ -10,6 +11,7 @@ public class BitmexTradingBot implements TradingBot, Runnable{
   private int botId;
   private String apiKey;
   private TradingAlgoritm tradingAlgoritm;
+  private static Logger logger = LogManager.getLogger();
 
   public BitmexTradingBot(String apiKey, TradingAlgoritm tradingAlgoritm) {
     this.botId = ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE);
@@ -19,25 +21,15 @@ public class BitmexTradingBot implements TradingBot, Runnable{
 
   @Override
   public void run() {
-    if(!tradingAlgoritm.accountKeysIsValid()) {
-      System.out.println("Account keys is not valid. Bot with id=" + botId + " was stopped");
-      throw new RuntimeException();
-    }
-
 
     tradingAlgoritm.makeStartOrders();
     while (!Thread.currentThread().isInterrupted()) {
-      System.out.println("BitmexTradingBot. run. id=" + botId + " timestamp=" + LocalTime.now());
+      logger.trace("Cycle iteration. Bot id=" + botId);
       try {
         tradingAlgoritm.updateFilledOrderIdsSet();
       } catch (Exception e) {
-        System.out.println("BitmexTradingBot. run. tradingAlgoritm.updateFilledOrderIdsSet() exception");
-      }
-
-      try {
-        tradingAlgoritm.makeCounterOrderIfFilledOrderAviable();
-      } catch (Exception e) {
-        System.out.println("BitmexTradingBot. run. tradingAlgoritm.makeCounterOrderIfFilledOrderAviable() exception");
+        logger.error("filledOrderIdsSet do not update. Bot id=" + botId);
+        throw new RuntimeException(e);
       }
 
       try {
@@ -45,6 +37,15 @@ public class BitmexTradingBot implements TradingBot, Runnable{
       } catch (InterruptedException e) {
         throw new RuntimeException(e);
       }
+
+      try {
+        tradingAlgoritm.makeCounterOrderIfFilledOrderAviable();
+      } catch (Exception e) {
+        logger.error("Counter order does not maked. Bot id=" + botId);
+        throw new RuntimeException(e);
+      }
+
+
     }
   }
 

@@ -10,6 +10,8 @@ import bots.algoritms.ordermakers.jsondataparsers.JsonDataParser;
 import bots.algoritms.ordermakers.orders.LimitOrder;
 import bots.algoritms.ordermakers.orders.orderconstants.OrderSide;
 import bots.algoritms.ordermakers.orders.orderconstants.Symbol;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,12 +23,14 @@ import java.net.http.HttpResponse;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 public class BitmexOrderMaker implements OrderMaker {
     private final String apiKey;
     private final String apiSecret;
     private final HttpClient client = HttpClient.newHttpClient();
     private final JsonDataParser jsonDataParser = new BitmexJsonDataParser();
+    private static Logger logger = LogManager.getLogger();
 
     public BitmexOrderMaker(String apiKey, String apiSecret) {
         this.apiKey = apiKey;
@@ -67,7 +71,7 @@ public class BitmexOrderMaker implements OrderMaker {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("BitmexOrderMaker. makeOrder:" + response.body());
+        logger.debug("response:" + response.body());
         return jsonDataParser.parseLimitOrder(response.body());
     }
 
@@ -148,7 +152,7 @@ public class BitmexOrderMaker implements OrderMaker {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println(response.body());
         return jsonDataParser.parseBitcoinPrice(response.body());
     }
 
@@ -207,7 +211,7 @@ public class BitmexOrderMaker implements OrderMaker {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("get all orders query: " + response.body());
+        logger.debug("response: " + response.body());
         try {
             JSONObject jsonObject = new JSONObject(response.body());
             String errorMessage = jsonObject.getJSONObject("error").getString("message");
@@ -226,7 +230,7 @@ public class BitmexOrderMaker implements OrderMaker {
         double currentBitcoinPrice = orderMaker.getCurrentBitcoinPrice();
         System.out.println(currentBitcoinPrice);
         System.out.println(orderMaker.getAllOrders());
-        LimitOrder limitOrder = new LimitOrder(Symbol.XBTUSD, OrderSide.SELL, currentBitcoinPrice-200.0, 200.0);
+        LimitOrder limitOrder = new LimitOrder(Symbol.XBTUSD, OrderSide.BUY, currentBitcoinPrice-600, 100.0);
         System.out.println(orderMaker.makeOrder(limitOrder));
     }
 }
