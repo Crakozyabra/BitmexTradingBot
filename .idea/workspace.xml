@@ -9,25 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3526ccfc-85ce-4988-a492-e4f018cebcd6" name="Changes" comment="second commit for adding signature.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/BitmexJsonDataParserTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/BitmexOrderMakerTest.java" afterDir="false" />
+    <list default="true" id="3526ccfc-85ce-4988-a492-e4f018cebcd6" name="Changes" comment="commit for add logging and some test">
+      <change afterPath="$PROJECT_DIR$/src/test/java/BitmexTradingAlgoritmDownSellUpBuyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/BitmexTradingBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/BitmexTradingBot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bots/algoritms/BitmexTradingAlgoritmDownSellUpBuy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/BitmexTradingAlgoritmDownSellUpBuy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bots/algoritms/TradingAlgoritm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/TradingAlgoritm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/BitmexOrderMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/BitmexOrderMaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/OrderMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/OrderMaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/jsondataparsers/BitmexJsonDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/jsondataparsers/BitmexJsonDataParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/jsondataparsers/JsonDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/algoritms/ordermakers/jsondataparsers/JsonDataParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/SimpleServletContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/SimpleServletContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/MainServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/RemoveBotServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/RemoveBotServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/scripts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/post_data.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/post_data.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BitmexJsonDataParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BitmexJsonDataParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BitmexOrderMakerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BitmexOrderMakerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,58 +97,51 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BitmexJsonDataParserTest.parseAllLimitOrders">
-    <configuration name="BitmexOrderMaker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bots.algoritms.ordermakers.BitmexOrderMaker" />
-      <module name="project-servlet-bitmex" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="bots.algoritms.ordermakers.orders.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="websocketclient.TestApp" />
-      <module name="project-servlet-bitmex" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="websocketclient.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BitmexJsonDataParserTest.parseAllLimitOrders" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.69">
+    <configuration name="BitmexOrderMakerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-servlet-bitmex" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BitmexJsonDataParserTest" />
-      <option name="METHOD_NAME" value="parseAllLimitOrders" />
+      <option name="MAIN_CLASS_NAME" value="BitmexOrderMakerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BitmexOrderMakerTest.accountKeysIsValidTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-servlet-bitmex" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BitmexOrderMakerTest" />
+      <option name="METHOD_NAME" value="accountKeysIsValidTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BitmexJsonDataParserTest.parseBitcoinPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BitmexOrderMakerTest.getCurrentBitcoinPriceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-servlet-bitmex" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BitmexJsonDataParserTest" />
-      <option name="METHOD_NAME" value="parseBitcoinPrice" />
+      <option name="MAIN_CLASS_NAME" value="BitmexOrderMakerTest" />
+      <option name="METHOD_NAME" value="getCurrentBitcoinPriceTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BitmexJsonDataParserTest.parseLimitOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BitmexTradingAlgoritmDownSellUpBuyTest.makeCounterOrderIfFilledOrderAviable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-servlet-bitmex" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BitmexJsonDataParserTest" />
-      <option name="METHOD_NAME" value="parseLimitOrder" />
+      <option name="MAIN_CLASS_NAME" value="BitmexTradingAlgoritmDownSellUpBuyTest" />
+      <option name="METHOD_NAME" value="makeCounterOrderIfFilledOrderAviable" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BitmexTradingAlgoritmDownSellUpBuyTest.makeStartOrdersTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-servlet-bitmex" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BitmexTradingAlgoritmDownSellUpBuyTest" />
+      <option name="METHOD_NAME" value="makeStartOrdersTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -251,20 +235,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.BitmexOrderMaker" />
-      <item itemvalue="Application.TestApp" />
-      <item itemvalue="JUnit.BitmexJsonDataParserTest.parseAllLimitOrders" />
-      <item itemvalue="JUnit.BitmexJsonDataParserTest.parseBitcoinPrice" />
-      <item itemvalue="JUnit.BitmexJsonDataParserTest.parseLimitOrder" />
+      <item itemvalue="JUnit.BitmexTradingAlgoritmDownSellUpBuyTest.makeCounterOrderIfFilledOrderAviable" />
+      <item itemvalue="JUnit.BitmexTradingAlgoritmDownSellUpBuyTest.makeStartOrdersTest" />
+      <item itemvalue="JUnit.BitmexOrderMakerTest.accountKeysIsValidTest" />
+      <item itemvalue="JUnit.BitmexOrderMakerTest.getCurrentBitcoinPriceTest" />
+      <item itemvalue="JUnit.BitmexOrderMakerTest" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BitmexJsonDataParserTest.parseAllLimitOrders" />
-        <item itemvalue="JUnit.BitmexJsonDataParserTest.parseLimitOrder" />
-        <item itemvalue="JUnit.BitmexJsonDataParserTest.parseBitcoinPrice" />
-        <item itemvalue="Application.BitmexOrderMaker" />
-        <item itemvalue="Application.TestApp" />
+        <item itemvalue="JUnit.BitmexTradingAlgoritmDownSellUpBuyTest.makeCounterOrderIfFilledOrderAviable" />
+        <item itemvalue="JUnit.BitmexTradingAlgoritmDownSellUpBuyTest.makeStartOrdersTest" />
+        <item itemvalue="JUnit.BitmexOrderMakerTest" />
+        <item itemvalue="JUnit.BitmexOrderMakerTest.accountKeysIsValidTest" />
+        <item itemvalue="JUnit.BitmexOrderMakerTest.getCurrentBitcoinPriceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -316,7 +300,13 @@
       <workItem from="1671867884571" duration="10393000" />
       <workItem from="1671879742127" duration="638000" />
       <workItem from="1671887152357" duration="713000" />
-      <workItem from="1671887992924" duration="8125000" />
+      <workItem from="1671887992924" duration="9971000" />
+      <workItem from="1671980268045" duration="6761000" />
+      <workItem from="1672002057427" duration="96000" />
+      <workItem from="1672047255526" duration="3636000" />
+      <workItem from="1672083135354" duration="5868000" />
+      <workItem from="1672128085927" duration="1274000" />
+      <workItem from="1672129696177" duration="9732000" />
     </task>
     <task id="LOCAL-00001" summary="first commit for start.">
       <created>1671707975504</created>
@@ -339,15 +329,34 @@
       <option name="project" value="LOCAL" />
       <updated>1671708771466</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit for add logging and some test">
+      <created>1671907307835</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671907307835</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit for start." />
     <MESSAGE value="second commit for adding signature." />
-    <option name="LAST_COMMIT_MESSAGE" value="second commit for adding signature." />
+    <MESSAGE value="commit for add logging and some test" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit for add logging and some test" />
   </component>
 </project>

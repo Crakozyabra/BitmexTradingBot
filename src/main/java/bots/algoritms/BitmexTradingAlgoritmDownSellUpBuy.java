@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class BitmexTradingAlgoritmDownSellUpBuy implements TradingAlgoritm{
     private double stepMoneyBetweenOrders = 200.0; // money step between bots.algoritms.ordermakers.orders only for buy or only for sell
     private int ordersQuanity = 3; // commons order quanity (for buy and for sell)
     private double moneyQuanityInOrder = 100.0; // money in USD for sell or for buy in order
-    private Set<String> filledOrderIdSet; // filled order set
+    private Set<String> filledOrderIdSet = new HashSet<>();
     private OrderMaker orderMaker;
 
     private static Logger logger = LogManager.getLogger();
@@ -89,12 +90,16 @@ public class BitmexTradingAlgoritmDownSellUpBuy implements TradingAlgoritm{
         logger.trace("start");
         filledOrderIdSet.forEach(filledOrderId -> {
             if(buyOrderIdPriceMap.containsKey(filledOrderId)) {
+                logger.trace("buyOrderIdPriceMap branch");
                 makeCounterOrder(filledOrderId, OrderSide.SELL);
                 buyOrderIdPriceMap.remove(filledOrderId);
             }
+
             if (sellOrderIdPriceMap.containsKey(filledOrderId)) {
+                logger.trace("sellOrderIdPriceMap branch");
                 makeCounterOrder(filledOrderId, OrderSide.BUY);
-                sellOrderIdPriceMap.remove(filledOrderId);}
+                sellOrderIdPriceMap.remove(filledOrderId);
+            }
         });
     }
 
@@ -140,5 +145,53 @@ public class BitmexTradingAlgoritmDownSellUpBuy implements TradingAlgoritm{
 
     public void setOrderMaker(OrderMaker orderMaker) {
         this.orderMaker = orderMaker;
+    }
+
+    public int getBotId() {
+        return botId;
+    }
+
+    public void setBotId(int botId) {
+        this.botId = botId;
+    }
+
+    public boolean isTrade() {
+        return isTrade;
+    }
+
+    public void setTrade(boolean trade) {
+        isTrade = trade;
+    }
+
+    public Map<String, Double> getBuyOrderIdPriceMap() {
+        return buyOrderIdPriceMap;
+    }
+
+    public void setBuyOrderIdPriceMap(Map<String, Double> buyOrderIdPriceMap) {
+        this.buyOrderIdPriceMap = buyOrderIdPriceMap;
+    }
+
+    public Map<String, Double> getSellOrderIdPriceMap() {
+        return sellOrderIdPriceMap;
+    }
+
+    public void setSellOrderIdPriceMap(Map<String, Double> sellOrderIdPriceMap) {
+        this.sellOrderIdPriceMap = sellOrderIdPriceMap;
+    }
+
+    public double getCursorBitcoinPrice() {
+        return cursorBitcoinPrice;
+    }
+
+    public void setCursorBitcoinPrice(double cursorBitcoinPrice) {
+        this.cursorBitcoinPrice = cursorBitcoinPrice;
+    }
+
+    public Set<String> getFilledOrderIdSet() {
+        return filledOrderIdSet;
+    }
+
+    public void setFilledOrderIdSet(Set<String> filledOrderIdSet) {
+        this.filledOrderIdSet = filledOrderIdSet;
     }
 }

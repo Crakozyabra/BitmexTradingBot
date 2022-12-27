@@ -3,6 +3,8 @@ package bots.algoritms.ordermakers.jsondataparsers;
 import bots.algoritms.ordermakers.orders.LimitOrder;
 import bots.algoritms.ordermakers.orders.orderconstants.OrderSide;
 import bots.algoritms.ordermakers.orders.orderconstants.Symbol;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -10,12 +12,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BitmexJsonDataParser implements JsonDataParser {
+   private final static Logger logger = LogManager.getLogger();
    public double parseBitcoinPrice(String message){ // current bitcoin average price between bid and ask price
        JSONArray jsonArray = new JSONArray(message);
        JSONObject lastBitcoinPriceTimestampObject = jsonArray.getJSONObject(0);
        double bidPrice = Double.parseDouble(lastBitcoinPriceTimestampObject.get("bidPrice").toString());
-       // double askPrice = Double.parseDouble(lastBitcoinPriceTimestampObject.get("askPrice").toString());
-       // return (bidPrice + askPrice) / 2;
        return bidPrice;
    }
 
@@ -27,8 +28,11 @@ public class BitmexJsonDataParser implements JsonDataParser {
                String limitOrder = limitOrdersArray.get(i).toString();
                LimitOrder limitOrderPOJO = parseLimitOrder(limitOrder);
                limitOrders.add(limitOrderPOJO);
-           } catch (Exception e) {}
+           } catch (Exception e) {
+               logger.debug("Order could not add to set");
+           }
        }
+
        return limitOrders;
    }
 

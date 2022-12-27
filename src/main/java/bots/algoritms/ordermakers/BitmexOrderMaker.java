@@ -23,14 +23,18 @@ import java.net.http.HttpResponse;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 public class BitmexOrderMaker implements OrderMaker {
     private final String apiKey;
     private final String apiSecret;
-    private final HttpClient client = HttpClient.newHttpClient();
-    private final JsonDataParser jsonDataParser = new BitmexJsonDataParser();
-    private static Logger logger = LogManager.getLogger();
+    private HttpClient client = HttpClient.newHttpClient();
+    private HttpRequest request;
+    private HttpResponse<String> response;
+    private URL url;
+    private String signature;
+    private String getQueryURLparams = "?symbol=XBTUSD&count=100&reverse=false&endTime=";
+    private JsonDataParser jsonDataParser = new BitmexJsonDataParser();
+    private final static Logger logger = LogManager.getLogger();
 
     public BitmexOrderMaker(String apiKey, String apiSecret) {
         this.apiKey = apiKey;
@@ -38,7 +42,7 @@ public class BitmexOrderMaker implements OrderMaker {
     }
     @Override
     public LimitOrder makeOrder(LimitOrder order) {
-        URL url = new URLBuilder()
+        url = new URLBuilder() // tested
                 .protocol(UtilURL.PROTOCOL_HTTP)
                 .net(UtilURL.TESTNET)
                 .baseUrl(UtilURL.BASE_URL)
@@ -47,14 +51,14 @@ public class BitmexOrderMaker implements OrderMaker {
                 .build();
         String orderJsonStr = new JSONObject(order).toString();
         String expires = createExpires();
-        String signature = createSignature(url, Verb.POST, orderJsonStr, expires);
+        signature = createSignature(url, Verb.POST, orderJsonStr, expires);
 
-        while(signature.length() != 64) {
+        while(signature.length() != 64) { // tested
             expires = createExpires();
             signature = createSignature(url, Verb.POST, orderJsonStr, expires);
         }
 
-        HttpRequest request = HttpRequest.newBuilder()
+        request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(orderJsonStr))
                 .header("api-signature", signature)
                 .header("api-expires", expires)
@@ -64,53 +68,41 @@ public class BitmexOrderMaker implements OrderMaker {
                 .uri(URI.create(url.toString()))
                 .build();
 
-        HttpResponse<String> response;
-
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);  // tested
         }
         logger.debug("response:" + response.body());
-        return jsonDataParser.parseLimitOrder(response.body());
+        return jsonDataParser.parseLimitOrder(response.body()); // tested
     }
 
     @Override
     public Set<LimitOrder> getAllOrders() {
-        URL url = new URLBuilder()
+        url = new URLBuilder() // tested
                 .protocol(UtilURL.PROTOCOL_HTTP)
                 .net(UtilURL.TESTNET)
                 .baseUrl(UtilURL.BASE_URL)
                 .apiPath(UtilURL.API_PATH_HTTP)
                 .recoursePath(ResourceURL.ORDER)
-                .queryData("?symbol=XBTUSD&count=100&reverse=false&endTime=" + LocalDateTime.now())
+                .queryData(getQueryURLparams + LocalDateTime.now())
                 .build();
         String expires = createExpires();
-        String signature = createSignature(url, Verb.GET, "?symbol=XBTUSD&count=100&reverse=false&endTime=" + LocalDateTime.now(), expires);
+        signature = createSignature(url, Verb.GET, getQueryURLparams + LocalDateTime.now(), expires);
 
         while(signature.length() != 64) {
             expires = createExpires();
-            signature = createSignature(url, Verb.GET, "?symbol=XBTUSD&count=100&reverse=false&endTime=" + LocalDateTime.now(), expires);
+            signature = createSignature(url, Verb.GET, getQueryURLparams + LocalDateTime.now(), expires);
         }
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .header("api-signature", signature)
-                .header("api-expires", expires)
-                .header("api-key", apiKey)
-                .header("Content-Type", "application/json; charset=utf-8")
-                .header("Accept", "application/json")
-                .uri(URI.create(url.toString()))
-                .build();
-
-        HttpResponse<String> response;
+        request = makeGetRequest(signature, apiKey, expires, url);
 
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-
+        logger.debug("response: " + response.body());
         return jsonDataParser.parseAllLimitOrders(response.body());
     }
 
@@ -118,41 +110,31 @@ public class BitmexOrderMaker implements OrderMaker {
 
     @Override
     public double getCurrentBitcoinPrice(){
-        URL url = new URLBuilder()
+        url = new URLBuilder() // tested
                 .protocol(UtilURL.PROTOCOL_HTTP)
                 .net(UtilURL.TESTNET)
                 .baseUrl(UtilURL.BASE_URL)
                 .apiPath(UtilURL.API_PATH_HTTP)
                 .recoursePath(ResourceURL.QUOTE)
-                .queryData("?symbol=XBTUSD&count=1&reverse=false&endTime=" + LocalDateTime.now())
+                .queryData(getQueryURLparams + LocalDateTime.now())
                 .build();
 
         String expires = createExpires();
-        String signature = createSignature(url, Verb.GET, "?symbol=XBTUSD&count=1&reverse=false&endTime=" + LocalDateTime.now(), expires);
+        signature = createSignature(url, Verb.GET, getQueryURLparams + LocalDateTime.now(), expires);
 
         while(signature.length() != 64) {
             expires = createExpires();
-            signature = createSignature(url, Verb.GET, "?symbol=XBTUSD&count=1&reverse=false&endTime=" + LocalDateTime.now(), expires);
+            signature = createSignature(url, Verb.GET, getQueryURLparams + LocalDateTime.now(), expires);
         }
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .header("api-signature", signature)
-                .header("api-expires", expires)
-                .header("api-key", apiKey)
-                .header("Content-Type", "application/json; charset=utf-8")
-                .header("Accept", "application/json")
-                .uri(URI.create(url.toString()))
-                .build();
-
-        HttpResponse<String> response;
+        request = makeGetRequest(signature, apiKey, expires, url);
 
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(response.body());
+        logger.debug("response: " + response.body());
         return jsonDataParser.parseBitcoinPrice(response.body());
     }
 
@@ -178,33 +160,23 @@ public class BitmexOrderMaker implements OrderMaker {
     }
 
     public boolean accountKeysIsValid() {
-        URL url = new URLBuilder()
+        url = new URLBuilder()
                 .protocol(UtilURL.PROTOCOL_HTTP)
                 .net(UtilURL.TESTNET)
                 .baseUrl(UtilURL.BASE_URL)
                 .apiPath(UtilURL.API_PATH_HTTP)
                 .recoursePath(ResourceURL.ORDER)
-                .queryData("?symbol=XBTUSD&count=100&reverse=false&endTime=" + LocalDateTime.now())
+                .queryData(getQueryURLparams + LocalDateTime.now())
                 .build();
         String expires = createExpires();
-        String signature = createSignature(url, Verb.GET, "?symbol=XBTUSD&count=100&reverse=false&endTime=" + LocalDateTime.now(), expires);
+        signature = createSignature(url, Verb.GET, getQueryURLparams + LocalDateTime.now(), expires);
 
         while(signature.length() != 64) {
             expires = createExpires();
-            signature = createSignature(url, Verb.GET, "?symbol=XBTUSD&count=100&reverse=false&endTime=" + LocalDateTime.now(), expires);
+            signature = createSignature(url, Verb.GET, getQueryURLparams + LocalDateTime.now(), expires);
         }
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .header("api-signature", signature)
-                .header("api-expires", expires)
-                .header("api-key", apiKey)
-                .header("Content-Type", "application/json; charset=utf-8")
-                .header("Accept", "application/json")
-                .uri(URI.create(url.toString()))
-                .build();
-
-        HttpResponse<String> response;
+        request = makeGetRequest(signature, apiKey, expires, url);
 
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -221,16 +193,81 @@ public class BitmexOrderMaker implements OrderMaker {
             }
         } catch (JSONException e) {}
         return true;
-        // {"error":{"message":"Invalid API Key.","name":"HTTPError"}}
-        // {"error":{"message":"Signature not valid.","name":"HTTPError"}}
     }
 
-    public static void main(String[] args) {
-        OrderMaker orderMaker = new BitmexOrderMaker("9z27ZL8GIE_Z36YQn2wOEWOk", "u-uyAKmPIvoZ5FySeotto6389b0exVHF4UGzPY6jY7i_9t3A");
-        double currentBitcoinPrice = orderMaker.getCurrentBitcoinPrice();
-        System.out.println(currentBitcoinPrice);
-        System.out.println(orderMaker.getAllOrders());
-        LimitOrder limitOrder = new LimitOrder(Symbol.XBTUSD, OrderSide.BUY, currentBitcoinPrice-600, 100.0);
-        System.out.println(orderMaker.makeOrder(limitOrder));
+    private HttpRequest makeGetRequest(String signature, String apiKey, String expires, URL url) {
+        return HttpRequest.newBuilder()
+                .GET()
+                .header("api-signature", signature)
+                .header("api-expires", expires)
+                .header("api-key", apiKey)
+                .header("Content-Type", "application/json; charset=utf-8")
+                .header("Accept", "application/json")
+                .uri(URI.create(url.toString()))
+                .build();
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public String getApiSecret() {
+        return apiSecret;
+    }
+
+    public HttpClient getClient() {
+        return client;
+    }
+
+    public HttpRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(HttpRequest request) {
+        this.request = request;
+    }
+
+    public HttpResponse<String> getResponse() {
+        return response;
+    }
+
+    public void setResponse(HttpResponse<String> response) {
+        this.response = response;
+    }
+
+    public URL getUrl() {
+        return url;
+    }
+
+    public void setUrl(URL url) {
+        this.url = url;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getGetQueryURLparams() {
+        return getQueryURLparams;
+    }
+
+    public void setGetQueryURLparams(String getQueryURLparams) {
+        this.getQueryURLparams = getQueryURLparams;
+    }
+
+    public JsonDataParser getJsonDataParser() {
+        return jsonDataParser;
+    }
+
+    public void setJsonDataParser(JsonDataParser jsonDataParser) {
+        this.jsonDataParser = jsonDataParser;
+    }
+
+    public void setClient(HttpClient client) {
+        this.client = client;
     }
 }
